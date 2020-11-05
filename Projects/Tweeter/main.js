@@ -10,27 +10,41 @@ const post = function(){
 }
 
 
-    $('.delete').on('click',function()
+    $('div#posts1').on('click','.delete',function()
     {
-        console.log("aaaa")
-        const a = $(this).data().id
-        console.log(a)
-        const index = parseInt(a[1])
-         const save = $($(this).closest('#posts1').children('.post1')[index - 1])
-         tweeter.removePost(save.data().id)
-         renderer.renderPosts(tweeter.getPosts())
+        const index = $(this).data().id
+        console.log(index)
+        const save = $($(this).closest('#posts1').children('.post1')[index[1] - 1])
+        console.log(save.data().id)
+        tweeter.removePost(save.data().id)
+        renderer.renderPosts(tweeter.getPosts())
+
     })
-    
-    $('.postComment').on('click','inputComment',function()
+
+    $('div#posts1').on('click','.postComment',function()
     {
-        const a = $(this)
-        console.log(a)
-        const index = parseInt(a[1])
-         const save = $($(this).closest('#posts1').children('.post1')[index - 1])
-        const input = $(this).closest('#posts1').children('.post1')
-        $('.inputComment').val("")
-        console.log(input)
+        const index =  $(this).data().postid
+        console.log(index)
+        const save = $($(this).closest('#posts1').children('.inputComment'))
+        console.log(save)
+        renderer.renderPosts(tweeter.getPosts())
+
     })
-      
+
+    $('div#posts1').on('click','.delete-comment',function()
+    {
+        const postIndex = $(this).data().postid
+        console.log(postIndex)
+        let index =  $(this).data().id
+        console.log("index is :" + index)
+        console.log($(this).closest('#posts1').children('.comments'))
+        let getC = parseInt(index[1])
+        const save = $($(this).closest('#posts1').children('.comments')[getC])
+        console.log()
+        console.log(save.data().id)
+        tweeter.removeComment(postIndex,index)
+        renderer.renderPosts(tweeter.getPosts())
+
+    })
         
   
