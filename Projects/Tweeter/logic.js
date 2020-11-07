@@ -21,12 +21,13 @@ const Tweeter = function()
                 ]
             }
         ]
-        let commentIdCounter = 1
+        let commentIdCounter = 0
         let postIdCounter = posts.length
         for(let i = 0;i<posts.length;i++)
         {
             commentIdCounter += posts[i].comments.length
         }
+        console.log(postIdCounter)
         console.log(commentIdCounter)
 
         const getPosts = () =>
